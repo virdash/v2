@@ -2,6 +2,7 @@ import { Component, enableProdMode } from '@angular/core';
 
 import * as mapsData from 'devextreme/dist/js/vectormap-data/world.js';
 import { FeatureCollection, Service } from './app.service';
+import coroData from "./interface/data";
 
 
 if(!/localhost/.test(document.location.host)) {
@@ -15,12 +16,16 @@ if(!/localhost/.test(document.location.host)) {
 })
 
 export class AppComponent {
-  title = 'frontend';
+  title = 'Virdash';
   worldMap: any = mapsData.world;
   markers: FeatureCollection;
+  // markers: coroData[];
+  totalConfirm: number;
 
   constructor(service: Service) {
       this.markers = service.getMarkers();
+      this.totalConfirm = service.getTotalConfirm();
+      // this.markers = service.corodata;
   }
 
   customizeText(arg) {

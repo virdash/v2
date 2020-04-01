@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { DxVectorMapModule } from 'devextreme-angular';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BotComponent } from './components/bot/bot.component';
+import { ChatbotRasaModule } from "angular-chat-widget-rasa";
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { BotComponent } from './components/bot/bot.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DxVectorMapModule
+    DxVectorMapModule,
+    ChatbotRasaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

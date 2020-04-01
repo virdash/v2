@@ -1,6 +1,63 @@
 body{
     margin: 0;
+    background-color: #2a2a2a;
 }
 ::ng-deep #vector-map {
     height: 100vh;
+}
+
+.home{
+    height: 100vh;
+
+    nav{
+        a{
+            color: #00acee;
+        }
+        a.logo{
+            text-decoration: none;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: #00acee;
+        }
+    }
+    // .chat-bot{
+    //     height: 50%;
+    // }
+    .total{
+        margin: -6.5rem auto 0 5rem;
+        width: 20rem;
+        position: fixed;
+        z-index: 999;
+
+        .totalValue{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fc9107;
+            font-size: 3rem;
+            height: 5rem;
+            border: 2px solid #00acee;
+        }
+        .btns{
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+        .btns-item{
+            text-align: center;
+            height: 1.5rem;
+        }
+        .btns-item:hover{
+            color: white;
+        }
+        .confirm{
+            background-color: #fc9107;
+        }
+        .recover{
+            background-color: #05BD00;
+        }
+        .death{
+            background-color: #F90000;
+        }
+    }
 }
