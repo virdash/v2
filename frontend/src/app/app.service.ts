@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import coroData from "./interface/data";
 import coro from "../assets/data/coro";
+import { BehaviorSubject } from 'rxjs';
+
 
 export class FeatureCollection {
     type: string;
@@ -15,9 +16,9 @@ export class Feature {
 }
 
 export class CoroData{
-    "Country\/Region": string;
-    "Lat": number;
-    "Long": number;
+    "country": string;
+    "lat": number;
+    "long": number;
     "confirm": number;
     "recover": number;
     "death": number;
@@ -25,7 +26,10 @@ export class CoroData{
 
 export class FeatureProperty {
     text: string;
-    value: number;
+    confirm: number;
+    recover: number;
+    death: number;
+    // red: string;
     tooltip: string;
 }
 
@@ -34,51 +38,73 @@ export class FeatureGeometry {
     coordinates: number[];
 }
 
-let markers: FeatureCollection = {
+// let markers: FeatureCollection = {
+//     type: "COVID-19",
+//     features: coro.map(function (data) {
+//         return {
+//             type: "Feature",
+//             geometry: {
+//                 type: "Point",
+//                 coordinates: [data['long'], data['lat']]
+//             },
+//             properties: {
+//                 text: data["country"],
+//                 confirm: data['confirm'],
+//                 recover: data['recover'],
+//                 death: data['death'],
+//                 tooltip: "<b>" + data["country"] + "</b>\n" + data['state'] +"\n" + data['confirm']
+//             }
+//         }
+//     })
+// };
+
+function someMarker(value: string) {
+  return{
     type: "COVID-19",
     features: coro.map(function (data) {
-        return {
-            type: "Feature",
-            geometry: {
-                type: "Point",
-                coordinates: [data.Long, data.Lat]
-            },
-            properties: {
-                text: data["Country\/Region"],
-                value: data.confirm,
-                tooltip: "<b>" + data["Country\/Region"] + "</b>\n" + data.confirm
-            }
+
+      return {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [data['long'], data['lat']]
+        },
+        properties: {
+          text: data["country"],
+          confirm: data['confirm'],
+          recover: data['recover'],
+          death: data['death'],
+          // tooltip: "<b>" + data["country"] + "</b>\n" + data['state'] +"\n" + data[value]
+          tooltip: `<b>${data['country']}</b>\n${data['state']}\n<span  style="color: #fc9107">Confirmed: ${data['confirm']}</span>\n<span  style="color: #05BD00">Recovered: ${data['recover']}</span>\n<span  style="color: #F90000">Death: ${data['death']}</span>`
         }
+      }
     })
-};
+  }
+}
+
+// let markers: FeatureCollection = someMarker('confirm')
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class Service {
-    // private _corodata: coroData[] = coro;
 
-    // get corodata(){
-    //     return [...this._corodata]
-    // }
-    // getData() {
-    //     return this.http.get<{data: any}>(
-    //       `https://st.plentywaka.com/api/v2/wakaboard/collate`
-    //     );
-    //   }
 
-    private _totalConfirm = coro.reduce((prev,cur)=>{
-            return prev + cur.confirm
-        }, 0)
+  markers: FeatureCollection = someMarker("confirm")
 
-    getTotalConfirm(){
-        console.log(`Total Confirmed = ${this._totalConfirm}`);
-        
-        return this._totalConfirm
-    }
+  getTotal(item: string){
+    return coro.reduce((prev,cur)=>{
+        return prev + cur[item]
+      }, 0)
+  }
 
-    getMarkers(): FeatureCollection {
-        return markers;
-    }
+  getMarkers(): FeatureCollection {
+    return this.markers;
+  }
+
+  setValue(value: string){
+    this.markers = someMarker(value)
+  }
 }
