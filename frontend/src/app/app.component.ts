@@ -1,4 +1,5 @@
 import { Component, enableProdMode } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 
 import * as mapsData from 'devextreme/dist/js/vectormap-data/world.js';
 import { FeatureCollection, Service } from './app.service';
@@ -18,7 +19,7 @@ if(!/localhost/.test(document.location.host)) {
 
 export class AppComponent {
   // For the Map
-  title = 'Virdash';
+  title = 'Africa Coronavirus Information and Awareness Hub | Virdash';
   worldMap: any = mapsData.world;
   markers: FeatureCollection;
 
@@ -59,7 +60,12 @@ export class AppComponent {
   isLoadingData = true;
   tweetData: tweetInterface[];
 
-  constructor(private service: Service, private tweetService: TweetsService) {
+  constructor(
+    private service: Service,
+    private tweetService: TweetsService,
+    private titleService: Title,
+    private metaService: Meta
+    ) {
       this.markers = service.getMarkers();
       this.totalConfirm = service.getTotal('confirm');
       this.totalRecover = service.getTotal('recover');
@@ -93,6 +99,23 @@ export class AppComponent {
               text: arg.attribute("tooltip")
           };
       }
+  }
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
+    // this.metaService.addTags([
+      // {name: 'keywords', content: 'COVID-19, Africa, Coronavirus, Symptoms'},
+      // {name: 'description', content: 'Virdash is a non-profit resource hub to increase awareness and accurate information on COVID-19 in Africa. It is an open-source project to improve areas of communication and early detection of the coronavirus.'},
+      // {name: 'robots', content: 'index, follow'},
+    // ]);
+    // this.metaService.addTags([
+      // {property:"og:site_name", content:"Website Name"},
+      // {property:"og:url", content:"https://virdash.com"},
+      // {property:"og:type", content:"Resource Hub"},
+      // {property:"og:title", content:"Virdash"},
+      // {property:"og:description", content:"Virdash is a non-profit resource hub to increase awareness and accurate information on COVID-19 in Africa. It is an open-source project to improve areas of communication and early detection of the coronavirus."},
+      // {property:"og:image", content:"assets/img/virdash.png"},
+      // {property:"og:image:secure_url", content:"assets/img/virdash.png"},
+    // ]);
   }
 }
 
