@@ -1,9 +1,10 @@
 runtime: python27
 api_version: 1
-threadsafe: true
+threadsafe: yes
+
 handlers:
   - url: /
-    static_files: frontend/index.html
-    upload: frontend/index.html
+    static_files: frontend/browser/index.html
+    upload: frontend/browser/index.html
   - url: /
-    static_dir: frontend
+    static_dir: frontend/browser 
