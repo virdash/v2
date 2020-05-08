@@ -67,7 +67,7 @@
 
 
     <div class="total">
-      <!-- <div class="tweets" id='tweet_scroll' *ngIf="!isLoadingData">
+      <div class="tweets" id='tweet_scroll' *ngIf="!isLoadingData">
         <div class="tweet scrollbar" id="scrollbar_style" *ngFor="let tweet of tweetData">
           <a href="{{ tweet?.tweet_URL }}" target="_blank">
             <div class="row">
@@ -83,14 +83,14 @@
             </div>
           </a>
         </div>
-      </div> -->
+      </div>
 
-      <iframe
+      <!-- <iframe
         allow="microphone;"
         width="350"
         height="430"
         src="https://console.dialogflow.com/api-client/demo/embedded/7ca520e8-3ccf-447f-bf2c-13ddc2dad851">
-      </iframe>
+      </iframe> -->
 
       <div class="totalValue" [style.color]="bubbleColor"><b>
         {{ totalValue }}</b></div>
