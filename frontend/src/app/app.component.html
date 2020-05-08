@@ -50,9 +50,24 @@
         opened=false>
     </chat-widget> -->
 
+    <!-- <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="vida"
+      agent-id="7ca520e8-3ccf-447f-bf2c-13ddc2dad851"
+      language-code="en"
+    ></df-messenger> -->
+
+    <iframe
+      allow="microphone;"
+      width="350"
+      height="430"
+      src="https://console.dialogflow.com/api-client/demo/embedded/7ca520e8-3ccf-447f-bf2c-13ddc2dad851">
+    </iframe>
+
 
     <div class="total">
-      <div class="tweets" id='tweet_scroll' *ngIf="!isLoadingData">
+      <!-- <div class="tweets" id='tweet_scroll' *ngIf="!isLoadingData">
         <div class="tweet scrollbar" id="scrollbar_style" *ngFor="let tweet of tweetData">
           <a href="{{ tweet?.tweet_URL }}" target="_blank">
             <div class="row">
@@ -68,14 +83,22 @@
             </div>
           </a>
         </div>
+      </div> -->
+
+      <iframe
+        allow="microphone;"
+        width="350"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/7ca520e8-3ccf-447f-bf2c-13ddc2dad851">
+      </iframe>
+
+      <div class="totalValue" [style.color]="bubbleColor"><b>
+        {{ totalValue }}</b></div>
+      <div class="btns">
+        <button class="btn btns-item confirm" (click)="renderConfirm()" [style.color]="!totalColor[0]?'#ffffff' : '#000000'">Confirmed</button>
+        <div class="btn btns-item recover" (click)="renderRecover()" [style.color]="!totalColor[1]?'#ffffff' : '#000000'">Recovered</div>
+        <div class="btn btns-item death" (click)="renderDeath()" [style.color]="!totalColor[2]?'#ffffff' : '#000000'">Death</div>
       </div>
-        <div class="totalValue" [style.color]="bubbleColor"><b>
-          {{ totalValue }}</b></div>
-        <div class="btns">
-            <button class="btn btns-item confirm" (click)="renderConfirm()" [style.color]="!totalColor[0]?'#ffffff' : '#000000'">Confirmed</button>
-            <div class="btn btns-item recover" (click)="renderRecover()" [style.color]="!totalColor[1]?'#ffffff' : '#000000'">Recovered</div>
-            <div class="btn btns-item death" (click)="renderDeath()" [style.color]="!totalColor[2]?'#ffffff' : '#000000'">Death</div>
-        </div>
     </div>
 </div>
 
