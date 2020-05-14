@@ -1,68 +1,104 @@
 <div class="home">
-        <nav class="navbar navbar-expand-md fixed-top">
-            <div class="container">
-                <a class="navbar-brand logo" href="#">Virdash</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Report a Case</a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-        </nav>
+    <div class="adjustNav">
+      <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+            <a class="navbar-brand logo mr-auto" href="#">Virdash</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" ></span>
+            </button>
+            <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">Report a Case</a>
+              </li>
+            </ul>
+            </div> -->
+        </div>
+      </nav>
+    </div>
 
-    <!-- <nav class="virdash_nav"> -->
-        <!-- <div class="container"> -->
-            <!-- <a class="logo" href="#">Virdash</a> -->
-            <!-- <div class="collapse navbar-collapse" id="collapsibleNavId"> -->
-            <!-- </div> -->
-        <!-- </div> -->
-    <!-- </nav> -->
-
-    <dx-vector-map 
-    id="vector-map" 
+    <dx-vector-map
+    id="vector-map"
     [bounds]="[-180, 60, 180, -60]">
-        <dxo-tooltip 
-            [enabled]="true" 
+        <dxo-tooltip
+            [enabled]="true"
             [customizeTooltip]="customizeTooltip"></dxo-tooltip>
-        <dxi-layer 
-            [dataSource]="worldMap" 
+        <dxi-layer
+            [dataSource]="worldMap"
             [hoverEnabled]="false"></dxi-layer>
-        <dxi-layer 
+        <dxi-layer
             [dataSource]="markers"
             [minSize]="5"
             [maxSize]="30"
             [sizeGroups]="[1, 5, 20, 50, 100, 500, 1000, 5000, 10000, 100000, 100000000]"
             [opacity]="0.6"
-            [palette]="['#fc9107']"
+            [palette]="[bubbleColor]"
             name="bubbles"
             elementType="bubble"
-            dataField="value">
+            dataField={{value}}>
         </dxi-layer>
     </dx-vector-map>
-    
-    <chat-widget 
-        botName="Vida" 
+
+    <!-- <chat-widget
+        botName="Vida"
         url="http://localhost:5005"
         startingMessage="Ask Vida about Coronavirus"
         theme="grey"
         opened=false>
-    </chat-widget>
+    </chat-widget> -->
+
+    <!-- <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="vida"
+      agent-id="7ca520e8-3ccf-447f-bf2c-13ddc2dad851"
+      language-code="en"
+    ></df-messenger> -->
+
+    <iframe
+      allow="microphone;"
+      width="350"
+      height="430"
+      src="https://console.dialogflow.com/api-client/demo/embedded/7ca520e8-3ccf-447f-bf2c-13ddc2dad851">
+    </iframe>
+
 
     <div class="total">
-        <div class="totalValue">{{ totalConfirm }}</div>
-        <div class="btns">
-            <div class="btns-item confirm">Confirmed</div>
-            <div class="btns-item recover">Recovered</div>
-            <div class="btns-item death">Death</div>
+      <div class="tweets" id='tweet_scroll' *ngIf="!isLoadingData">
+        <div class="tweet scrollbar" id="scrollbar_style" *ngFor="let tweet of tweetData">
+          <a href="{{ tweet?.tweet_URL }}" target="_blank">
+            <div class="row">
+              <div class="col-2" >
+                <img class='profile' src="{{ tweet?.user_imageURL }}" alt="">
+              </div>
+              <div class="col-10">
+                {{ tweet?.username }}<br/>
+                @{{ tweet?.user_handle }}<br/>
+                {{ tweet?.tweet_text }}<br/>
+                <img class='media' src="{{ tweet?.tweet_mediaURL }}" alt=""><br/>
+              </div>
+            </div>
+          </a>
         </div>
+      </div>
+
+      <!-- <iframe
+        allow="microphone;"
+        width="350"
+        height="430"
+        src="https://console.dialogflow.com/api-client/demo/embedded/7ca520e8-3ccf-447f-bf2c-13ddc2dad851">
+      </iframe> -->
+
+      <div class="totalValue" [style.color]="bubbleColor"><b>
+        {{ totalValue }}</b></div>
+      <div class="btns">
+        <button class="btn btns-item confirm" (click)="renderConfirm()" [style.color]="!totalColor[0]?'#ffffff' : '#000000'">Confirmed</button>
+        <div class="btn btns-item recover" (click)="renderRecover()" [style.color]="!totalColor[1]?'#ffffff' : '#000000'">Recovered</div>
+        <div class="btn btns-item death" (click)="renderDeath()" [style.color]="!totalColor[2]?'#ffffff' : '#000000'">Death</div>
+      </div>
     </div>
 </div>
 

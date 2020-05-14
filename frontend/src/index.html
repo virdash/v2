@@ -2,9 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Frontend</title>
+  <title>Virdash</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name='keywords' content='COVID-19, Africa, Coronavirus, Symptoms'/>
+  <meta name='description' content='Virdash is a non-profit resource hub to increase awareness and accurate information on COVID-19 in Africa. It is an open-source project to improve areas of communication and early detection of the coronavirus.'/>
+  <meta name='robots' content='index, follow'/>
+
+  <meta property="og:site_name" content="Website Name"/>
+  <meta propert="og:url" content="https://virdash.com"/>
+  <meta property="og:type" content="Resource Hub"/>
+  <meta property="og:title" content="Virdash"/>
+  <meta property="og:description" content="Virdash is a non-profit resource hub to increase awareness and accurate information on COVID-19 in Africa. It is an open-source project to improve areas of communication and early detection of the coronavirus."/>
+  <meta property="og:image" content="./assets/img/virdash.png"/>
+  <meta property="og:image:secure_url", content="./assets/img/virdash.png"/>
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <!-- font -->
@@ -12,22 +25,21 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163339773-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-163339773-1');
+  </script>
 </head>
 <body>
   <app-root></app-root>
   <div id="webchat"></div>
 <script src="https://storage.googleapis.com/mrbot-cdn/webchat-latest.js"></script>
-<!-- <script>
-  WebChat.default.init({
-    selector: "#webchat",
-    initPayload: "hi",
-    customData: {"language": "en"}, 
-    socketUrl: "http://localhost:5002",
-    socketPath: "/socket.io/",
-    title: "Vida",
-    inputTextFieldHint:"What do you want to know about the virus",
-  })
-</script> -->
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

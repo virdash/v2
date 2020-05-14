@@ -4,19 +4,19 @@ import { DxVectorMapModule } from 'devextreme-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BotComponent } from './components/bot/bot.component';
 import { ChatbotRasaModule } from "angular-chat-widget-rasa";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BotComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     DxVectorMapModule,
     ChatbotRasaModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
