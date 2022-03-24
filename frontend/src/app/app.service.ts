@@ -20,16 +20,15 @@ export class CoroData{
     "lat": number;
     "long": number;
     "confirm": number;
-    "recover": number;
+    // "recover": number;
     "death": number;
 }
 
 export class FeatureProperty {
     text: string;
     confirm: number;
-    recover: number;
+    // recover: number;
     death: number;
-    // red: string;
     tooltip: string;
 }
 
@@ -72,10 +71,11 @@ function someMarker(value: string) {
         properties: {
           text: data["country"],
           confirm: data['confirm'],
-          recover: data['recover'],
+          // recover: data['recover'],
           death: data['death'],
           // tooltip: "<b>" + data["country"] + "</b>\n" + data['state'] +"\n" + data[value]
-          tooltip: `<b>${data['country']}</b>\n${data['state']}\n<span  style="color: #fc9107">Confirmed: ${data['confirm']}</span>\n<span  style="color: #05BD00">Recovered: ${data['recover']}</span>\n<span  style="color: #F90000">Death: ${data['death']}</span>`
+          // tooltip: `<b>${data['country']}</b>\n${data['state']}\n<span  style="color: #fc9107">Confirmed: ${data['confirm']}</span>\n<span  style="color: #05BD00">Recovered: ${data['recover']}</span>\n<span  style="color: #F90000">Death: ${data['death']}</span>`
+          tooltip: `<b>${data['country']}</b>\n${data['state']}\n<span  style="color: #fc9107">Confirmed: ${data['confirm']}</span>\n<span  style="color: #F90000">Death: ${data['death']}</span>`
         }
       }
     })

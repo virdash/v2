@@ -25,7 +25,7 @@ export class AppComponent {
 
   totalValue: any;
   totalConfirm: number;
-  totalRecover: number;
+  // totalRecover: number;
   totalDeath: number;
   bubbleColor: string="#fc9107";
   value: string = 'confirm';
@@ -40,13 +40,13 @@ export class AppComponent {
     this.changeBubble()
   }
 
-  renderRecover(){
-    this.totalValue = this.totalRecover.toLocaleString();
-    this.bubbleColor="#05BD00";
-    this.value='recover';
-    this.totalColor=[false,true,false];
-    this.changeBubble()
-  }
+  // renderRecover(){
+  //   // this.totalValue = this.totalRecover.toLocaleString();
+  //   this.bubbleColor="#05BD00";
+  //   this.value='recover';
+  //   this.totalColor=[false,true,false];
+  //   this.changeBubble()
+  // }
 
   renderDeath(){
     this.totalValue = this.totalDeath.toLocaleString();
@@ -68,7 +68,7 @@ export class AppComponent {
     ) {
       this.markers = service.getMarkers();
       this.totalConfirm = service.getTotal('confirm');
-      this.totalRecover = service.getTotal('recover');
+      // this.totalRecover = service.getTotal('recover');
       this.totalDeath = service.getTotal('death');
 
       // Initializing the total value
