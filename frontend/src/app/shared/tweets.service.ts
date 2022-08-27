@@ -13,7 +13,7 @@ export class TweetsService {
 
   getData() {
     return this.http.get<tweetInterface[]>(
-      `https://api/virdash.com/v1/tweets`
+      `https://api.virdash.com/v1/tweets`
     );
   }
 }
